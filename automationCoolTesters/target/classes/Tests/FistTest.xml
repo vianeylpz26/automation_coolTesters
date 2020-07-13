@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="FirstTest" parallel="false">
+	<listeners>
+		<listener class-name="listeners.ScreenshotListener" />
+	</listeners>
+	<test name="Login Example" parallel="false">
+		<parameter name="Browser" value="edge" />
+		<parameter name="Browser2" value="chorme" />
+		<classes>
+			<class name="cemexgo.tests.FirstTest">
+				<methods>
+					<include name="loginCemexgo" />
+					<include name="loginCemexgoFailure" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite> 

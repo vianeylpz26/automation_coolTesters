@@ -1,0 +1,11 @@
+*.class
+*test-output
+\test-output
+*.swp
+*.orig
+\.classpath
+**/*_LOCAL_*.groovy
+**/*_REMOTE_*.groovy
+**/*_BACKUP_*.groovy
+**/*_BASE_*.groovy
+**/log.properties
