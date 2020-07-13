@@ -80,7 +80,7 @@ public class DuplicateNames {
 	    	
 	    	if(names.equals("Persona 1")) {
 	    		count++;
-	    	}
+	    	} 
 	    }
 	    System.out.println("Amount of times that elemet is reapeated in list without duplicates numbers: " + count);
 	   
