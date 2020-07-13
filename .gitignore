@@ -9,3 +9,4 @@
 **/*_BACKUP_*.groovy
 **/*_BASE_*.groovy
 **/log.properties
+*.gitignore
