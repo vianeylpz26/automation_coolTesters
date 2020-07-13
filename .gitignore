@@ -4,9 +4,9 @@
 *.swp
 *.orig
 \.classpath
-*\target\classes\*
+**\target\classes\**
 **/*_REMOTE_*.groovy
 **/*_BACKUP_*.groovy
 **/*_BASE_*.groovy
 **/log.properties
-*.gitignore
+*\.gitignore
