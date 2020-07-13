@@ -10,3 +10,4 @@
 **/*_BASE_*.groovy
 **/log.properties
 *\.gitignore
+automationCoolTesters\target\classes\.gitignore
