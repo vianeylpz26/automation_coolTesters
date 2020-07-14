@@ -59,7 +59,7 @@ public class FirstTest {
 	@AfterMethod(alwaysRun = true)
     public void closeBrowser(){
 		if(driver!=null) {
-		driver.close();
+		driver.quit();
 		}
         
     }
