@@ -49,7 +49,7 @@ public class ScreenshotListener extends TestListenerAdapter {
     @Override
     public void onStart(ITestContext testContext) { 
     	XmlSuite test = testContext.getCurrentXmlTest().getSuite();
-    	filePath = "test-output\\"+test.getName()+"\\screenshotsFaliures\\";
+    	filePath = "test-output\\"+test.getName()+"\\screenshots\\";
     	System.out.println(test.getName());
     }
     
