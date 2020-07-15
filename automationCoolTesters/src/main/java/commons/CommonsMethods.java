@@ -1,6 +1,8 @@
 package commons;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -27,6 +29,9 @@ import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
 
 import listeners.ScreenshotListener;
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 
 public class CommonsMethods extends TestListenerAdapter {
 	static WebDriver driver;
@@ -37,6 +42,10 @@ public class CommonsMethods extends TestListenerAdapter {
 	
 	public CommonsMethods(WebDriver driver) {
 		CommonsMethods.driver=driver;
+	}
+	
+	public CommonsMethods() {
+		
 	}
 	/* @Descriptio WebDriver initialization   
 	 * @author Sergio.Ramones
@@ -124,7 +133,7 @@ public class CommonsMethods extends TestListenerAdapter {
 			reviewElement(webElement);
 			scrollToWebElement(webElement);
 			webElement.sendKeys(text);
-			Reporter.log("Text was entered: " + text);
+			Reporter.log("Text was entered: " + text, true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -137,7 +146,7 @@ public class CommonsMethods extends TestListenerAdapter {
 	public void scrollToWebElement(WebElement webElement) throws Exception {
 		try {
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
-			System.out.println("Element was scroll into View");
+			Reporter.log("Element was scroll into View",true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,7 +161,7 @@ public class CommonsMethods extends TestListenerAdapter {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 			wait.until(ExpectedConditions.visibilityOf(webElement));	
 			wait.until(ExpectedConditions.elementToBeClickable(webElement));
-			System.out.println("Element is present in the page");
+			Reporter.log("Element is present in the page", true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -167,7 +176,7 @@ public class CommonsMethods extends TestListenerAdapter {
 			reviewElement(webElement);
 			scrollToWebElement(webElement);
 			webElement.click();
-			System.out.println("Object was clicked.");
+			Reporter.log("Object was clicked.", true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -198,7 +207,7 @@ public class CommonsMethods extends TestListenerAdapter {
 				}
 
 			}
-			System.out.println("Language selected: " + language);
+			Reporter.log("Language selected: " + language, true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -206,8 +215,11 @@ public class CommonsMethods extends TestListenerAdapter {
 		}
 	}
 	
-	
-	
+	/* @Description take screenshot 
+	 * @author Sergio.Ramones
+	 * @Date 06/08/2020
+	 * @parameter description
+	 * */
 	  public void takeScreenShot(String description) throws InterruptedException {
 	        //get the driver
 		 	  driver=getDriver();
@@ -218,9 +230,26 @@ public class CommonsMethods extends TestListenerAdapter {
 	         //The below method will save the screen shot in d drive with test method name 
 	            try {
 	                FileUtils.copyFile(scrFile, new File(ScreenshotListener.filePath+ScreenshotListener.methodName+"_"+description+"_"+formater.format(calendar.getTime())+".png"));
-	                System.out.println("***Sceenshot taken save it --> "+ScreenshotListener.filePath+" ***");
+	                Reporter.log("***Sceenshot taken save it --> "+ScreenshotListener.filePath+" ***",true);
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	            }
 	    }
+	  
+	  	/* @Description take screenshot 
+		 * @author Sergio.Ramones
+		 * @Date 06/08/2020
+		 * @parameter jsonPath
+		 * */
+	  public JSONObject readJSON(String jsonPath) throws FileNotFoundException, ParseException {
+		  JSONObject jsonObject = null;
+		  try {	
+		  JSONParser parser = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
+			Object obj = parser.parse(new FileReader(jsonPath));
+		  jsonObject = (JSONObject) obj;
+		  }catch (Exception e) {
+			  Reporter.log("JSON file can't be readed: " + jsonPath, true);
+		  }
+		  return jsonObject;
+	  }
 }
