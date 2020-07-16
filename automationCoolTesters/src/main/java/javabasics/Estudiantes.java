@@ -23,11 +23,11 @@ public class Estudiantes {
 			sumaNotas = sumaNotas + nota;
 			if (nota > notaMayor) {
 				notaMayor = nota;
-			}
+			}//end if
 			if (nota < notaMenor) {
 				notaMenor = nota;
-			}
-		}
+			}//end if
+		}//end for
 
 		
 	
@@ -37,8 +37,11 @@ public class Estudiantes {
 		System.out.print("El promedio es: " + sumaNotas / cantidadNotas + "\n");
 		if (sumaNotas / cantidadNotas < 70) {
 			System.out.println("No aprobaste");
-		} else {
+		}//end if 
+		else {
 			System.out.println("Aprobaste");
-		}
-	}
-}
+		}//end else
+		
+		
+	}//end main
+}//end class
