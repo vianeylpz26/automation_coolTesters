@@ -8,14 +8,16 @@ import java.util.Scanner;
 public class Estudiantes {
 
 	public static void main(String[] ARGS) {
-
+		
+		//variables
 		Scanner obtener = new Scanner(System.in);
-
+		List<Float> calificaciones = new ArrayList<>();
 		float cantidadNotas, nota, sumaNotas = 0f;
-
+		
+		
 		System.out.print("Ingrese la cantidad de Notas: ");
 		cantidadNotas = obtener.nextFloat();
-		List<Float> calificaciones = new ArrayList<>();
+		
 
 		for (int i = 1; i <= cantidadNotas; i++) {
 
@@ -24,6 +26,7 @@ public class Estudiantes {
 
 			while (nota < 0 || nota > 100) {
 				System.out.println("Numero fuera de rango, Escoje una calificacion mayor que 0 y menor que 100: ");
+				System.out.print("vuelve a ingresar la nota numero: " + i + " : \n");
 				nota = obtener.nextFloat();
 			}
 			calificaciones.add(nota);
